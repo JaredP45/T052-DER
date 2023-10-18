@@ -1,3 +1,12 @@
+**Setup Instructions**
+1. Clone repository
+2. Create virtual env using `python3 -m venv venv`
+3. cd into `DERSite`
+4. Run `pip3 install -r requirements.txt`; all site packages used should install.
+5. Migrations should not have to be updated as both the database `db.sqlite3` and migrations folder are included, but in case not run `python3 ./manage.py makemigrations`. If there are migrations to be made, run `python3 ./manage.py migrate` __DO NOT PUSH UP CHANGES WITH MIGRATIONS!__ as this will cause an unalignment issue with existing migrations the database. Running migrations terminal commands should be used only to get the localhost site to run for previewing/testing.
+7. Run `python3 ./manage.py runserver` to run server and check localhost.
+8. Site should be up and running!
+
 **Website Requirements**
 
 * Just below the navigation bar, there should be a photo banner with solar panels, wind turbines, and batteries. The title, “Welcome to DER8.9” with the subheading
@@ -18,3 +27,7 @@
 
 * Clicking on the DER8.9 logo should bring you back to the “Home” screen.
 * At the bottom of the page, upon clicking “Contact Us” you should be prompted with a Contact Form that requests: Full Name, Email, Phone Number, and a Message with an optional File Upload.
+
+
+**Resources**
+[User management](https://realpython.com/django-user-management/)
