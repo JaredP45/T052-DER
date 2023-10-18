@@ -30,4 +30,5 @@
 
 
 **Resources**
+
 [User management](https://realpython.com/django-user-management/)
