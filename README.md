@@ -32,3 +32,4 @@
 **Resources**
 
 [User management](https://realpython.com/django-user-management/)
+[Dashboard Visualization](https://www.freecodecamp.org/news/how-to-create-an-analytics-dashboard-in-django-app/)
