@@ -1,7 +1,6 @@
 **Setup Instructions**
 1. Clone repository
 2. Create virtual env using `python3 -m venv venv`
-3. cd into `DERSite`
 4. Run `pip3 install -r requirements.txt`; all site packages used should install.
 7. Run `python3 ./manage.py runserver` to run server and check localhost.
 8. If localhost does not run, check:
