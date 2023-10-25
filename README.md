@@ -33,3 +33,6 @@
 
 [User management](https://realpython.com/django-user-management/)
 [Dashboard Visualization](https://www.freecodecamp.org/news/how-to-create-an-analytics-dashboard-in-django-app/)
+[Other Django Tutorials](https://learndjango.com/tutorials/)
+
+[Banner Image](https://www.freeimages.com/photo/wind-turbines-at-the-autumn-field-1237402)
