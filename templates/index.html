@@ -1,9 +1,32 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
-  <h1>DER Technologies</h1>
-  <p>
-    The place to be energized by green-tech!
-  </p>
-  <h2>Dynamic content</h2>
+{% block index %}
+  <head>
+    <title>DER Home</title>
+  </head>
+
+  {% include 'navbar.html' %}
+  <body>
+    <header class="page-header header container-fluid">
+    <h1>DER Technologies</h1>
+    <p>
+      The place to be energized by green-tech!
+    </p>
+    <div class="container features">
+      <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+              <h3 class="feature-title">About DER</h3>
+              <p>This is about our company values and stuff.</p>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12">
+              <h3 class="feature-title">Latest Updates</h3>
+              <p>The latest news around our company.</p>
+          </div>
+      </div>
+    </div>
+  </body>
+  {% include 'footer.html' %}
 {% endblock %}
