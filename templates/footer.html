@@ -1,33 +1,35 @@
 {% extends 'base.html' %}
 {% block footer %}
-    <div id='footer'>
-        <footer class="page-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="extra-links col-lg-8 col-md-8 col-sm-12">
-                        <div class="container">
-                            <div class="row">
-                                <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-links col-lg-4 col-md-4 col-sm-12">
-                        <h6 class="text-uppercase font-weight-bold">Contact or Subscribe</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center">
-                <small>2022 © dertechnologies.com</small>
-            </div>
-        </footer>
-    </div>
-    <style>
-        #bottom {
-            position: relative;
-            bottom:0;
-            width:100%;
-            height:60px;
-        }
-    </style>
+  <div id='footer'>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mx-auto">
+            <a href="mailto:contact@der.wind"  target="_blank" rel="noopener noreferrer">
+              <i class="mx-auto fa fa-envelope fa-lg"></i>
+            </a>
+          </div>
+          <div class="col-4 mx-auto">
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+              <i class="mx-auto fa fa-linkedin fa-lg"></i>
+            </a>
+          </div>
+          <div class="col-4 mx-auto">
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+              <i class="mx-auto fa-brands fa-x-twitter fa-lg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="extra-links mx-auto col-lg-12 col-md-8 col-sm-12">
+            <h6 class="text-uppercase font-weight-bold text-center">Additional Information</h6>
+            <p>We value feedback, so please contact us for any inquiry about servicing or support.</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <small>2023 © derwind.com</small>
+      </div>
+    </footer>
+  </div>
 {% endblock footer %}

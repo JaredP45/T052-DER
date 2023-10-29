@@ -37,4 +37,9 @@
 [Other Django Tutorials](https://learndjango.com/tutorials/)
 [Building and Rendering Templates](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Home_page)
 
+***Sources Used***
 [Banner Image](https://www.freeimages.com/photo/wind-turbines-at-the-autumn-field-1237402)
+[Power Generation Icon](https://www.flaticon.com/free-icon/power-generation_5223111)
+[Wind Turbine Icon](https://www.flaticon.com/free-icon/wind-turbine_5223040?related_id=5223501&origin=search)
+[Renewable Energy Icon](https://www.flaticon.com/free-icon/renewable-energy_5223232)
+[Renewable Energy Icon - Logo](https://www.flaticon.com/free-icon/renewable-energy_5223154)

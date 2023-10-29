@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block summary %}
+  <head>
+    <title>DER Home</title>
+  </head>
+  <body>
+    <div class="container my-5">
+      <div class="row">
+        <h1 class="text-center mb-5">Who We Are</h1>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="summary card mb-2 h-100">
+            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/power-generation.png' %}">
+            <div class="card-body">
+              <h3 class="summary">A Living, Breathing Grid</h3>
+              <p>We ensure that energy generation and dissipation is appropriately handled for high and low demand schedules.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="summary card mb-2 h-100">
+            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/renewable-energy-logo.png' %}">
+            <div class="card-body">
+              <h3>Coded with Honour</h3>
+              <p>Reliability is one of our core values, and so we hold ourselves to high standard of infrastructure security.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="summary card mb-2 h-100">
+            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/renewable-energy.png' %}">
+            <div class="card-body">
+              <h3>From Wind Farm to Home</h3>
+              <p>Our service is there for you, tapped from the magical winds and transferred to your home ready for electrical use.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="summary card mb-2 h-100">
+            <img class="image-fluid card-img-top mx-auto py-5" src="{% static 'images/wind-turbine.png' %}">
+            <div class="card-body">
+              <h3>Ethical Turbine Construction</h3>
+              <p>Turbine installment is coordinated with government agencies and local advocacy groups to ensure that our turbines are where everyone agrees for them to be at.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <style>
+    .summary img {
+      display: block;
+      max-width: 100px;
+      height: auto;
+    }
+    .summary h3, p{
+      text-align: center;
+    }
+  </style>
+{% endblock %}
