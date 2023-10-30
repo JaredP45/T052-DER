@@ -39,7 +39,15 @@
 
 ***Sources Used***
 [Banner Image](https://www.freeimages.com/photo/wind-turbines-at-the-autumn-field-1237402)
+
+[Solar Panel Icon](https://www.flaticon.com/free-icon/solar-panel_5223020)
+
+[Battery Charge Icon](https://www.flaticon.com/free-icon/battery-charge_5223293)
+
+[Monitor Icon](https://www.flaticon.com/free-icon/electical_5223428?related_id=5223428&origin=pack)
+
 [Power Generation Icon](https://www.flaticon.com/free-icon/power-generation_5223111)
+
 [Wind Turbine Icon](https://www.flaticon.com/free-icon/wind-turbine_5223040?related_id=5223501&origin=search)
+
 [Renewable Energy Icon](https://www.flaticon.com/free-icon/renewable-energy_5223232)
-[Renewable Energy Icon - Logo](https://www.flaticon.com/free-icon/renewable-energy_5223154)
