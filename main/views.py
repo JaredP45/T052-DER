@@ -29,6 +29,12 @@ def contact(request):
 
     return render(request, 'contact.html')
 
+def contact_support(request):
+    """ View function for displaying contact support page of site. """
+    context = {}
+
+    return render(request, 'support.html')
+
 def admin_login(request):
 	if request.method == "POST":
 		form = AuthenticationForm(request, data=request.POST)
@@ -64,3 +70,13 @@ def admin_register(request):
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewAdminForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
+
+def admin_account(request):
+	if request.method == "PUT":
+		form = NewAdminForm(request.PUT)
+		if form.is_valid():
+			form.save()
+			messages.success(request, "Updated account." )
+		messages.error(request, "Unsuccessful registration. Invalid information.")
+	form = NewAdminForm()
+	return render (request=request, template_name="account.html", context={"account_form":form})
