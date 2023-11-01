@@ -3,6 +3,9 @@ from .forms import NewAdminForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import ContactForm, ContactSupportForm
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 
 def index(request):
     """ View function for home page of site. """
@@ -24,10 +27,47 @@ def data(request):
     return render(request, 'data.html')
 
 def contact(request):
-    """ View function for displaying contact page of site. """
-    context = {}
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = f"Inquiry: {form.cleaned_data.get('subject')}"
+			body = {
+				'full_name': form.cleaned_data.get('full_name'), 
+				'email': form.cleaned_data.get('email_address'), 
+				'phone_number': form.cleaned_data.get('phone_number'), 
+				'message': form.cleaned_data.get('message')
+			}
+			message = "\n".join(body.values())
+			try:
+				messages.success(request, "Email successfully sent!")
+				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
+			except BadHeaderError:
+				messages.error(request, "Unable to send email. Please try again later.")
+			return redirect ("main:index")
+      
+	form = ContactForm()
+	return render(request, "contact.html", {'contact_form':form})
 
-    return render(request, 'contact.html')
+def contact_support(request):
+	if request.method == 'POST':
+		form = ContactSupportForm(request.POST)
+		if form.is_valid():
+			subject = f"Support: {form.cleaned_data.get('subject')}"
+			body = {
+				'username': form.cleaned_data.get('username'), 
+				'email': form.cleaned_data.get('email_address'),
+				'message': form.cleaned_data.get('message')
+			}
+			message = "\n".join(body.values())
+			try:
+				messages.success(request, "Email successfully sent!")
+				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
+			except BadHeaderError:
+				messages.error(request, "Unable to send email. Please try again later.")
+			return redirect ("main:index")
+      
+	form = ContactSupportForm()
+	return render(request, "admin-portal/support.html", {'contact_support_form':form})
 
 def admin_login(request):
 	if request.method == "POST":
@@ -38,7 +78,7 @@ def admin_login(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
+				messages.info(request, f"Welcome, {username}!")
 				return redirect("main:index")
 			else:
 				messages.error(request, "Invalid username or password.")
@@ -70,12 +110,6 @@ def admin_panel(request):
 	context = {}
 
 	return render(request, 'admin-portal/admin_panel.html')
-
-def contact_support(request):
-    """ View function for displaying contact support page of site. """
-    context = {}
-
-    return render(request, 'admin-portal/support.html')
 
 def contact_submissions(request):
     """ View function for displaying contact support submissions page of site. """

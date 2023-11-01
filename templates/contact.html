@@ -1,34 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block contact %}
   <head>
-    <title>Contact</title>
+    <title>Contact Us</title>
   </head>
   {% include 'navbar.html' %}
+  {% include 'messages.html' %}
   <body>
     <div class="container">
-      <form>
+      <form method="POST">
+        {% csrf_token %}
         <div class="form-group m-1">
-          <label for="InputName">Full Name</label>
-          <input type="field" class="form-control" id="InputName" placeholder="Enter your full name." required>
+          {{ contact_form.full_name|as_crispy_field }}
         </div>
+
         <div class="form-group m-1">
-          <label for="InputEmail">Email address</label>
-          <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          {{ contact_form.email_address|as_crispy_field }}
         </div>
+
         <div class="form-group m-1">
-          <label for="InputPhone">Phone Number</label>
-          <input type="tel" class="form-control" pattern="[\+]\d{1} \d{3}-\d{3}-\d{4}$" id="InputPhone" placeholder="Enter your phone number." required>
-          <small id="phoneFormat" class="form-text text-muted">Format +# ###-###-###</small>
+          {{ contact_form.subject|as_crispy_field }}
         </div>
-        <div class="form-group m-2">
-          <label for="InputComment">Comment</label>
-          <textarea class="form-control" rows="5" id="InputComment" placeholder="Include any additional information." required></textarea>
-        </div>
-        <div class="form-group m-2">
-          <input type="file" class="form-control-file">
+
+        <div class="form-group m-1">
+          {{ contact_form.message|as_crispy_field }}
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

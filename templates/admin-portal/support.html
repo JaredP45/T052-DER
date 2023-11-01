@@ -1,28 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block contact_support %}
   <head>
     <title>Contact Support</title>
   </head>
   {% include 'navbar.html' %}
+  {% include 'messages.html' %}
   <body>
     <div class="container">
-      <form>
+      <form method="POST">
+        {% csrf_token %}
         <div class="form-group m-1">
-          <label for="InputName">Username</label>
-          <input type="field" class="form-control" id="InputName" placeholder="Enter your full name." value="{{ user.username }}" disabled>
+          {{ contact_support_form.username|as_crispy_field }}
         </div>
+
         <div class="form-group m-1">
-          <label for="InputEmail">Email address</label>
-          <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" value="{{ user.email }}" required>
+          {{ contact_support_form.email_address|as_crispy_field }}
         </div>
-        <div class="form-group m-2">
-          <label for="InputComment">Comment</label>
-          <textarea class="form-control" rows="5" id="InputComment" placeholder="Include any additional information." required></textarea>
+
+        <div class="form-group m-1">
+          {{ contact_support_form.subject|as_crispy_field }}
         </div>
-        <div class="form-group m-2">
-          <input type="file" class="form-control-file">
+
+        <div class="form-group m-1">
+          {{ contact_support_form.message|as_crispy_field }}
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
