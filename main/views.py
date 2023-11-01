@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
-from .forms import NewAdminForm
+from .forms import NewAdminForm, ContactForm, ContactSupportForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import ContactForm, ContactSupportForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from .models import ContactSupport
+from django.contrib.auth.models import User
 
 def index(request):
     """ View function for home page of site. """
@@ -30,7 +32,6 @@ def contact(request):
 	if request.method == 'POST':
 		form = ContactForm(request.POST)
 		if form.is_valid():
-			form.save()
 			subject = f"Inquiry: {form.cleaned_data.get('subject')}"
 			# body = {
 			# 	'full_name': form.cleaned_data.get('full_name'), 
@@ -57,22 +58,30 @@ def contact_support(request):
 	if request.method == 'POST':
 		form = ContactSupportForm(request.POST)
 		if form.is_valid():
+			form.save()
 			subject = f"Support: {form.cleaned_data.get('subject')}"
-			body = {
-				'username': form.cleaned_data.get('username'), 
-				'email': form.cleaned_data.get('email_address'),
-				'message': form.cleaned_data.get('message')
-			}
-			message = "\n".join(body.values())
+			# body = {
+			# 	'username': form.cleaned_data.get('username'), 
+			# 	'email': form.cleaned_data.get('email_address'),
+			# 	'message': form.cleaned_data.get('message')
+			# }
+			# message = "\n".join(body.values())
+			
+			# FIXME: message not able to be parsed
+			message="Message body"
 			try:
 				messages.success(request, "Email successfully sent!")
 				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
 			except BadHeaderError:
 				messages.error(request, "Unable to send email. Please try again later.")
-			return redirect ("main:index")
+			return redirect("main:contact_submissions")
       
 	form = ContactSupportForm()
 	return render(request, "admin-portal/support.html", {'contact_support_form':form})
+
+def contact_submissions(request):
+	submissions = ContactSupport.objects.all()
+	return render(request, 'admin-portal/contact_submissions.html', {'submissions': submissions})
 
 def admin_login(request):
 	if request.method == "POST":
@@ -129,7 +138,6 @@ def dashboard(request):
     return render(request, 'admin-portal/dashboard.html')
 
 def registered_users(request):
-    """ View function for displaying contact support page of site. """
-    context = {}
-
-    return render(request, 'admin-portal/registered_users.html')
+	""" View function for displaying contact support page of site. """
+	users = User.objects.all().values()
+	return render(request, 'admin-portal/registered_users.html', {'users': users})

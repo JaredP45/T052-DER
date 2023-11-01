@@ -23,4 +23,4 @@ class ContactSupport(models.Model):
         app_label  = 'main'
 
     def __str__(self):
-        return self.email
+        return self.subject
