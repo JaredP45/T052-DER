@@ -17,7 +17,11 @@
         </div>
 
         <div class="form-group m-1">
-          {{ contact_form.email_address|as_crispy_field }}
+          {{ contact_form.email|as_crispy_field }}
+        </div>
+
+        <div class="form-group m-1">
+          {{ contact_form.phone_number|as_crispy_field }}
         </div>
 
         <div class="form-group m-1">

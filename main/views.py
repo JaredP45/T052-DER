@@ -30,25 +30,30 @@ def contact(request):
 	if request.method == 'POST':
 		form = ContactForm(request.POST)
 		if form.is_valid():
+			form.save()
 			subject = f"Inquiry: {form.cleaned_data.get('subject')}"
-			body = {
-				'full_name': form.cleaned_data.get('full_name'), 
-				'email': form.cleaned_data.get('email_address'), 
-				'phone_number': form.cleaned_data.get('phone_number'), 
-				'message': form.cleaned_data.get('message')
-			}
-			message = "\n".join(body.values())
+			# body = {
+			# 	'full_name': form.cleaned_data.get('full_name'), 
+			# 	'email': form.cleaned_data.get('email_address'), 
+			# 	'phone_number': form.cleaned_data.get('phone_number'), 
+			# 	'message': form.cleaned_data.get('message')
+			# }
+			# message = "\n".join(body.values())
+			
+			# FIXME: message not able to be parsed
+			message="Message body"
 			try:
 				messages.success(request, "Email successfully sent!")
 				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
+				
 			except BadHeaderError:
 				messages.error(request, "Unable to send email. Please try again later.")
 			return redirect ("main:index")
-      
 	form = ContactForm()
 	return render(request, "contact.html", {'contact_form':form})
 
 def contact_support(request):
+	# TODO: Implement changes similiar in contact
 	if request.method == 'POST':
 		form = ContactSupportForm(request.POST)
 		if form.is_valid():
