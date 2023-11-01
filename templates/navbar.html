@@ -21,10 +21,13 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{user.username}}
+              Admin Portal
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'main:account' %}">Your Account</a>
+              <a class="dropdown-item" href="{% url 'main:admin_panel' %}">Panel</a>
+              <a class="dropdown-item" href="{% url 'main:dashboard' %}">Dashboard</a>
+              <a class="dropdown-item" href="{% url 'main:registered_users' %}">Registered Users</a>
+              <a class="dropdown-item" href="{% url 'main:contact_submissions' %}">Contact Submissions</a>
               <a class="dropdown-item" href="{% url 'main:contact_support' %}">Contact Support</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'main:logout' %}">Logout</a>
