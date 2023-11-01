@@ -77,7 +77,7 @@ def contact_support(request):
 			return redirect("main:contact_submissions")
       
 	form = ContactSupportForm()
-	return render(request, "admin-portal/support.html", {'contact_support_form':form})
+	return render(request, "admin-portal/support.html", {'contact_support_form': form})
 
 def contact_submissions(request):
 	submissions = ContactSupport.objects.all()
@@ -124,12 +124,6 @@ def admin_panel(request):
 	context = {}
 
 	return render(request, 'admin-portal/admin_panel.html')
-
-def contact_submissions(request):
-    """ View function for displaying contact support submissions page of site. """
-    context = {}
-
-    return render(request, 'admin-portal/contact_submissions.html')
 
 def dashboard(request):
     """ View function for displaying dashboard page of site. """

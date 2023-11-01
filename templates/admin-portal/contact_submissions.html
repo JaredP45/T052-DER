@@ -7,9 +7,35 @@
   </head>
   {% include 'navbar.html' %}
   <body>
-    <h1>Contact Submissions</h1>
-    {{ user }}
-    {{ submissions }} Submissions
+    <h1 class="text-center">Contact Submissions</h1>
+    <table class="table table-bordered table-hover table-sm w-75 mx-auto">
+      <thead class="thead-dark">
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Message</th>
+      </thead>
+      <tbody>
+        {% for submission in submissions %}
+          <tr>
+            <th scope="row">{{ submission.username }}</td>
+            <td>{{ submission.email }}</td>
+            <td>{{ submission.subject|truncatechars:50 }}</td>
+            <td>
+              <p class="mr-auto">{{ submission.message|truncatechars:75 }}</p>
+              <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{submission.message}}" aria-expanded="false" aria-controls="collapseExample">
+                  Button with data-target
+                </button>
+              </p>
+              <div class="collapse" id="{{submission.message}}">
+                <div class="card card-body">{{ submission.message }}</div>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     {% include 'footer.html' %}
   </body>
 {% endblock %}
