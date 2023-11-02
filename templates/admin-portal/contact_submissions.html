@@ -21,17 +21,7 @@
             <th scope="row">{{ submission.username }}</td>
             <td>{{ submission.email }}</td>
             <td>{{ submission.subject|truncatechars:50 }}</td>
-            <td>
-              <p class="mr-auto">{{ submission.message|truncatechars:75 }}</p>
-              <p>
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{submission.message}}" aria-expanded="false" aria-controls="collapseExample">
-                  Button with data-target
-                </button>
-              </p>
-              <div class="collapse" id="{{submission.message}}">
-                <div class="card card-body">{{ submission.message }}</div>
-              </div>
-            </td>
+            <td>{{ submission.message|truncatechars:75 }}</td>
           </tr>
         {% endfor %}
       </tbody>
