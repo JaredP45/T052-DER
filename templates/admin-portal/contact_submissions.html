@@ -6,6 +6,7 @@
     <title>Contact Submissions</title>
   </head>
   {% include 'navbar.html' %}
+  {% include 'messages.html' %}
   <body>
     <h1 class="text-center">Contact Submissions</h1>
     <table class="table table-bordered table-hover table-sm w-75 mx-auto">
@@ -20,8 +21,8 @@
           <tr>
             <th scope="row">{{ submission.username }}</td>
             <td>{{ submission.email }}</td>
-            <td>{{ submission.subject|truncatechars:50 }}</td>
-            <td>{{ submission.message|truncatechars:75 }}</td>
+            <td>{{ submission.subject }}</td>
+            <td>{{ submission.message }}</td>
           </tr>
         {% endfor %}
       </tbody>
