@@ -135,3 +135,9 @@ def registered_users(request):
 	""" View function for displaying contact support page of site. """
 	users = User.objects.all().values()
 	return render(request, 'admin-portal/registered_users.html', {'users': users})
+
+"""
+TODO:
+	Some pages are accessible without authentication (contact submissions, dashboard, registered users) due to the pages being connected to admin panel.
+	These pages should be rendered as templates within Django views in order for authentication to work properly.
+"""
