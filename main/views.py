@@ -20,10 +20,38 @@ def about(request):
     context = {}
     return render(request, 'pages/about.html')
 
-def data(request):
+def der_data_page(request):
     """ View function for displaying data page of site. """
     context = {}
-    return render(request, 'pages/data.html')
+    return render(request, 'pages/der-data/data.html')
+
+def der1(request):
+	""" View function for displaying data page of site. """
+	if request.user.is_authenticated:
+		return render(request, 'pages/der-data/der1.html')
+	else:
+		raise PermissionDenied()
+
+def der2(request):
+	""" View function for displaying data page of site. """
+	if request.user.is_authenticated:
+		return render(request, 'pages/der-data/der2.html')
+	else:
+		raise PermissionDenied()
+
+def der3(request):
+	""" View function for displaying data page of site. """
+	if request.user.is_authenticated:
+		return render(request, 'pages/der-data/der3.html')
+	else:
+		raise PermissionDenied()
+
+def der4(request):
+	""" View function for displaying data page of site. """
+	if request.user.is_authenticated:
+		return render(request, 'pages/der-data/der4.html')
+	else:
+		raise PermissionDenied()
 
 def contact(request):
 	if request.method == 'POST':
