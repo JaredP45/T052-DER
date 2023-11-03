@@ -123,7 +123,9 @@ def admin_panel(request):
 def dashboard(request):
 	""" View function for displaying dashboard page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'admin-portal-pages/dashboard.html')
+		submissions = ContactSupport.objects.all()
+		users = User.objects.all().values()
+		return render(request, 'admin-portal-pages/dashboard.html', {"submissions": submissions, "users": users})
 	else:
 		raise PermissionDenied()
 
