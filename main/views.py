@@ -44,6 +44,7 @@ def contact(request):
 			except BadHeaderError:
 				messages.error(request, "Unable to send email. Please try again later.")
 			return redirect ("main:index")
+		messages.info(request, f"Could not send email: {form.errors.as_text().split('*')[2]}")
 	form = ContactForm()
 	return render(request, "pages/contact.html", {'contact_form':form})
 
