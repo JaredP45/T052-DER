@@ -27,6 +27,7 @@ class ContactForm(forms.Form):
 	phone_number = PhoneNumberField()
 	subject = forms.CharField(max_length=100)
 	message = forms.CharField(widget=forms.Textarea, max_length=2000)
+	file_upload = forms.FileField(required=False)
 
 	def __init__(self, *args, **kwargs):
 		super(ContactForm, self).__init__(*args, **kwargs)
@@ -36,4 +37,4 @@ class ContactForm(forms.Form):
 class ContactSupportForm(ModelForm):
 	class Meta:
 		model = ContactSupport
-		fields = ["username", "email", "subject", "message"]
+		fields = ["username", "email", "subject", "message", "file_upload"]
