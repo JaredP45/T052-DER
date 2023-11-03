@@ -7,8 +7,11 @@
   </head>
   {% include 'page-components/navbar.html' %}
   <body>
-    <!-- TODO: Add data about DER -->
-    <h1 class="text-center">Some Data about DER</h1> 
+    <h1 class="text-center">DER Data</h1>
+
+    {% if user.is_authenticated == False %}
+      <p class="text-center">To view DER data, please <a href="{% url 'main:login' %}">login</a> or <a href="{% url 'main:register' %}">register</a> for an account.</p> 
+    {% endif %}
     {% include 'page-components/footer.html' %}
   </body>
 {% endblock %}
