@@ -1,4 +1,3 @@
-@import "index/control.css";
 html {
   height: 100%;
 }
@@ -35,6 +34,7 @@ body {
   position: relative;
   height: 100%;
   box-shadow: 5px 5px 5px gray;
+  filter: blur(1px);
 }
 .overlay {
   position: absolute;
@@ -61,7 +61,7 @@ body {
 .description {
   left: 50%;
   position: absolute;
-  top: 45%;
+  top: 52%;
   transform: translate(-50%, -55%);
   text-align: center;
 }

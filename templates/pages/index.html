@@ -12,16 +12,16 @@
       class="page-header header container-fluid"
       style="background-image: url({% static 'images/banner.jpg' %});"
     >
-      <div class="overlay"></div>
-      {% include 'page-components/messages.html' %}
-      <div class="description">
-        <img class="image-fluid col-xl-6 col-lg-4 col-md-4 col-sm-12 col-12" src="{% static 'images/DER_small_logo.png' %}"">
-        <h1>Welcome to DER8.9</h1>
-        <p>
-          Part of JakaaGen Inc.
-        </p>
-      </div>
+    <div class="overlay"></div>
     </header>
+    {% include 'page-components/messages.html' %}
+    <div class="description">
+      <img class="image-fluid col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12" src="{% static 'images/DER_small_logo.png' %}">
+      <h1>Welcome to DER8.9</h1>
+      <p>
+        Part of JakaaGen Inc.
+      </p>
+    </div>
     {% include 'pages/summary.html' %}
   </body>
   {% include 'page-components/footer.html' %}
