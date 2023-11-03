@@ -83,7 +83,7 @@ def admin_login(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"Welcome, {username}!")
-				return redirect("main:index")
+				return redirect("main:admin_panel")
 			else:
 				messages.error(request, "Invalid username or password.")
 		else:
