@@ -7,10 +7,10 @@ class ContactSupport(models.Model):
     subject = models.CharField(max_length=255)
     message = models.TextField()
     file_upload = models.FileField(
+        null=True,
+        blank=True,
         upload_to='contact/submissions/documents/',
         help_text='max. 42 megabytes',
-        blank=True,
-        default='contact/submissions/documents/default.txt'
     )
 
     class Meta:

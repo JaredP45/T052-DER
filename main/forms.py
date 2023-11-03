@@ -33,7 +33,6 @@ class ContactForm(forms.Form):
 		super(ContactForm, self).__init__(*args, **kwargs)
 		self.fields['phone_number'].help_text = "Enter a valid phone number (e.g. +12125552368)."
 
-
 class ContactSupportForm(ModelForm):
 	class Meta:
 		model = ContactSupport

@@ -10,7 +10,7 @@
   {% include 'page-components/messages.html' %}
   <body>
     <div class="container">
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group m-1">
           {{ contact_support_form.username|as_crispy_field }}
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group m-1">
-          {{ contact_support_form.file_upload|as_crispy_field }}
+          {{ contact_support_form.file_upload|as_crispy_field }}  
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
