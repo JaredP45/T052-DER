@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'page-components/base.html' %}
 {% load static %}
 
 {% block content %}
   <head>
     <title>Admin Panel</title>
   </head>
-  {% include 'navbar.html' %}
+  {% include 'page-components/navbar.html' %}
   <body>
     <div class="container">
         <h1 class="text-center">Admin Panel</h1>
@@ -19,6 +19,6 @@
             <a href="/admin-portal/registered_users">Registered Users</a>
         </div>
     </div>
-    {% include 'footer.html' %}
+    {% include 'page-components/footer.html' %}
   </body>
 {% endblock %}

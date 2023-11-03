@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'page-components/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -6,14 +6,14 @@
     <title>DER Home</title>
   </head>
 
-  {% include 'navbar.html' %}
+  {% include 'page-components/navbar.html' %}
   <body>
     <header
       class="page-header header container-fluid"
       style="background-image: url({% static 'images/banner.jpg' %});"
     >
       <div class="overlay"></div>
-      {% include 'messages.html' %}
+      {% include 'page-components/messages.html' %}
       <div class="description col-xl-8 col-lg-6 col-md-6 col-sm-10 col-10">
         <img class="image-fluid" width="350" src="{% static 'images/DER_small_logo.png' %}"">
         <h1>Welcome to DER8.9</h1>
@@ -22,7 +22,7 @@
         </p>
       </div>
     </header>
-    {% include 'summary.html' %}
+    {% include 'pages/summary.html' %}
   </body>
-  {% include 'footer.html' %}
+  {% include 'page-components/footer.html' %}
 {% endblock %}

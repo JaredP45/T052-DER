@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'page-components/base.html' %}
 {% load static %}
 
 {% block content %}
   <head>
     <title>Contact Submissions</title>
   </head>
-  {% include 'navbar.html' %}
-  {% include 'messages.html' %}
+  {% include 'page-components/navbar.html' %}
+  {% include 'page-components/messages.html' %}
   <body>
     <h1 class="text-center">Contact Submissions</h1>
     <table class="table table-bordered table-hover table-sm w-75 mx-auto">
@@ -27,6 +27,6 @@
         {% endfor %}
       </tbody>
     </table>
-    {% include 'footer.html' %}
+    {% include 'page-components/footer.html' %}
   </body>
 {% endblock %}

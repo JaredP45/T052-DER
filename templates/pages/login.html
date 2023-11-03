@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'page-components/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -6,9 +6,9 @@
   <head>
     <title>Login</title>
   </head>
-  {% include 'navbar.html' %}
+  {% include 'page-components/navbar.html' %}
   <body>
-    {% include 'messages.html' %}
+    {% include 'page-components/messages.html' %}
     <div class="container">
       <h1>Login</h1>
       <form method="POST">
@@ -21,8 +21,8 @@
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
-      <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+      <p class="text-center">Don't have an account? <a href="{% url 'main:register' %}">Create an account</a>.</p>
     </div>
-    {% include 'footer.html' %}
+    {% include 'page-components/footer.html' %}
   </body>
 {% endblock %}

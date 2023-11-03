@@ -7,23 +7,23 @@ from .forms import ContactForm, ContactSupportForm
 from django.core.mail import send_mail, BadHeaderError
 from .models import ContactSupport
 from django.contrib.auth.models import User
-from django.core.exceptions import PermissionDenied, SuspiciousOperation, ViewDoesNotExist
+from django.core.exceptions import PermissionDenied
 
 def index(request):
     """ View function for home page of site. """
     context = {}
     # Render the HTML template index.html with the data in the context variable
-    return render(request, 'index.html')
+    return render(request, 'pages/index.html')
 
 def about(request):
     """ View function for displaying about page of site. """
     context = {}
-    return render(request, 'about.html')
+    return render(request, 'pages/about.html')
 
 def data(request):
     """ View function for displaying data page of site. """
     context = {}
-    return render(request, 'data.html')
+    return render(request, 'pages/data.html')
 
 def contact(request):
 	if request.method == 'POST':
@@ -45,7 +45,7 @@ def contact(request):
 				messages.error(request, "Unable to send email. Please try again later.")
 			return redirect ("main:index")
 	form = ContactForm()
-	return render(request, "contact.html", {'contact_form':form})
+	return render(request, "pages/contact.html", {'contact_form':form})
 
 def contact_support(request):
 	if request.user.is_authenticated:
@@ -68,7 +68,7 @@ def contact_support(request):
 				return redirect("main:contact_submissions")
 		
 		form = ContactSupportForm()
-		return render(request, "admin-portal/support.html", {'contact_support_form': form})
+		return render(request, "admin-portal-pages/support.html", {'contact_support_form': form})
 	else:
 		raise PermissionDenied()
 
@@ -89,7 +89,7 @@ def admin_login(request):
 			messages.error(request, "Invalid username or password.")
 
 	form = AuthenticationForm()
-	return render(request=request, template_name="login.html", context={"login_form":form})
+	return render(request=request, template_name="pages/login.html", context={"login_form":form})
 
 def admin_logout(request):
 	logout(request)
@@ -106,26 +106,26 @@ def admin_register(request):
 			return redirect("main:index")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewAdminForm()
-	return render (request=request, template_name="register.html", context={"register_form":form})
+	return render (request=request, template_name="pages/register.html", context={"register_form":form})
 
 def admin_panel(request):
 	""" View function for displaying admin portal page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'admin-portal/admin_panel.html')
+		return render(request, 'admin-portal-pages/admin_panel.html')
 	else:
 		raise PermissionDenied()
 
 def dashboard(request):
 	""" View function for displaying dashboard page of site. """
 	if request.user.is_authenticated:
-		return render(request, 'admin-portal/dashboard.html')
+		return render(request, 'admin-portal-pages/dashboard.html')
 	else:
 		raise PermissionDenied()
 
 def contact_submissions(request):
 	if request.user.is_authenticated:
 		submissions = ContactSupport.objects.all()
-		return render(request, 'admin-portal/contact_submissions.html', {'submissions': submissions})
+		return render(request, 'admin-portal-pages/contact_submissions.html', {'submissions': submissions})
 	else:
 		raise PermissionDenied()
 
@@ -133,7 +133,7 @@ def registered_users(request):
 	""" View function for displaying contact support page of site. """
 	if request.user.is_authenticated:
 		users = User.objects.all().values()
-		return render(request, 'admin-portal/registered_users.html', {'users': users})
+		return render(request, 'admin-portal-pages/registered_users.html', {'users': users})
 	else:
 		raise PermissionDenied()
 
@@ -147,4 +147,4 @@ def error_403(request, exception):
 	return render(request,'errors/403.html', status=403)
 
 def error_500(request,  *args, **argv):
-	return render(request, '/errors/500.html', status=500, data={})
+	return render(request, 'errors/500.html', status=500, data={})
