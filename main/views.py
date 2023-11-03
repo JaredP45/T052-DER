@@ -5,27 +5,24 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import ContactForm, ContactSupportForm
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
 from .models import ContactSupport
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied, SuspiciousOperation, ViewDoesNotExist
 
 def index(request):
     """ View function for home page of site. """
     context = {}
-
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html')
 
 def about(request):
     """ View function for displaying about page of site. """
     context = {}
-
     return render(request, 'about.html')
 
 def data(request):
     """ View function for displaying data page of site. """
     context = {}
-
     return render(request, 'data.html')
 
 def contact(request):
@@ -51,31 +48,29 @@ def contact(request):
 	return render(request, "contact.html", {'contact_form':form})
 
 def contact_support(request):
-	# TODO: Implement changes similiar in contact
-	if request.method == 'POST':
-		form = ContactSupportForm(request.POST)
-		if form.is_valid():
-			form.save()
-			subject = f"Support: {form.cleaned_data.get('subject')}"
-			body = {
-				'username': form.cleaned_data.get('username'), 
-				'email': form.cleaned_data.get('email'),
-				'message': form.cleaned_data.get('message')
-			}
-			message = "\n".join(body.values())
-			try:
-				messages.success(request, "Email successfully sent!")
-				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
-			except BadHeaderError:
-				messages.error(request, "Unable to send email. Please try again later.")
-			return redirect("main:contact_submissions")
-      
-	form = ContactSupportForm()
-	return render(request, "admin-portal/support.html", {'contact_support_form': form})
-
-def contact_submissions(request):
-	submissions = ContactSupport.objects.all()
-	return render(request, 'admin-portal/contact_submissions.html', {'submissions': submissions})
+	if request.user.is_authenticated:
+		if request.method == 'POST':
+			form = ContactSupportForm(request.POST)
+			if form.is_valid():
+				form.save()
+				subject = f"Support: {form.cleaned_data.get('subject')}"
+				body = {
+					'username': form.cleaned_data.get('username'), 
+					'email': form.cleaned_data.get('email'),
+					'message': form.cleaned_data.get('message')
+				}
+				message = "\n".join(body.values())
+				try:
+					messages.success(request, "Email successfully sent!")
+					send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
+				except BadHeaderError:
+					messages.error(request, "Unable to send email. Please try again later.")
+				return redirect("main:contact_submissions")
+		
+		form = ContactSupportForm()
+		return render(request, "admin-portal/support.html", {'contact_support_form': form})
+	else:
+		raise PermissionDenied()
 
 def admin_login(request):
 	if request.method == "POST":
@@ -115,23 +110,41 @@ def admin_register(request):
 
 def admin_panel(request):
 	""" View function for displaying admin portal page of site. """
-	context = {}
-
-	return render(request, 'admin-portal/admin_panel.html')
+	if request.user.is_authenticated:
+		return render(request, 'admin-portal/admin_panel.html')
+	else:
+		raise PermissionDenied()
 
 def dashboard(request):
-    """ View function for displaying dashboard page of site. """
-    context = {}
+	""" View function for displaying dashboard page of site. """
+	if request.user.is_authenticated:
+		return render(request, 'admin-portal/dashboard.html')
+	else:
+		raise PermissionDenied()
 
-    return render(request, 'admin-portal/dashboard.html')
+def contact_submissions(request):
+	if request.user.is_authenticated:
+		submissions = ContactSupport.objects.all()
+		return render(request, 'admin-portal/contact_submissions.html', {'submissions': submissions})
+	else:
+		raise PermissionDenied()
 
 def registered_users(request):
 	""" View function for displaying contact support page of site. """
-	users = User.objects.all().values()
-	return render(request, 'admin-portal/registered_users.html', {'users': users})
+	if request.user.is_authenticated:
+		users = User.objects.all().values()
+		return render(request, 'admin-portal/registered_users.html', {'users': users})
+	else:
+		raise PermissionDenied()
 
-"""
-TODO:
-	Some pages are accessible without authentication (contact submissions, dashboard, registered users) due to the pages being connected to admin panel.
-	These pages should be rendered as templates within Django views in order for authentication to work properly.
-"""
+def error_400(request,  exception):
+	return render(request,'errors/400.html', status=400, data={})
+
+def error_404(request, exception):
+	return render(request,'errors/404.html', status=404)
+
+def error_403(request, exception):
+	return render(request,'errors/403.html', status=403)
+
+def error_500(request,  *args, **argv):
+	return render(request, '/errors/500.html', status=500, data={})
