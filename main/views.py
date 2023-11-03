@@ -33,16 +33,13 @@ def contact(request):
 		form = ContactForm(request.POST)
 		if form.is_valid():
 			subject = f"Inquiry: {form.cleaned_data.get('subject')}"
-			# body = {
-			# 	'full_name': form.cleaned_data.get('full_name'), 
-			# 	'email': form.cleaned_data.get('email_address'), 
-			# 	'phone_number': form.cleaned_data.get('phone_number'), 
-			# 	'message': form.cleaned_data.get('message')
-			# }
-			# message = "\n".join(body.values())
-			
-			# FIXME: message not able to be parsed
-			message="Message body"
+			body = {
+				'full_name': form.cleaned_data.get('full_name'), 
+				'email': form.cleaned_data.get('email'), 
+				'phone_number': str(form.cleaned_data.get('phone_number')), 
+				'message': form.cleaned_data.get('message')
+			}
+			message = "\n".join(body.values())
 			try:
 				messages.success(request, "Email successfully sent!")
 				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
@@ -60,15 +57,12 @@ def contact_support(request):
 		if form.is_valid():
 			form.save()
 			subject = f"Support: {form.cleaned_data.get('subject')}"
-			# body = {
-			# 	'username': form.cleaned_data.get('username'), 
-			# 	'email': form.cleaned_data.get('email_address'),
-			# 	'message': form.cleaned_data.get('message')
-			# }
-			# message = "\n".join(body.values())
-			
-			# FIXME: message not able to be parsed
-			message="Message body"
+			body = {
+				'username': form.cleaned_data.get('username'), 
+				'email': form.cleaned_data.get('email'),
+				'message': form.cleaned_data.get('message')
+			}
+			message = "\n".join(body.values())
 			try:
 				messages.success(request, "Email successfully sent!")
 				send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
