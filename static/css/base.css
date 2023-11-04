@@ -34,7 +34,6 @@ body {
   position: relative;
   height: 100%;
   box-shadow: 5px 5px 5px gray;
-  filter: blur(1px);
 }
 .overlay {
   position: absolute;
